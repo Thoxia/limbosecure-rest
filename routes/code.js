@@ -46,14 +46,4 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        const code = await Code.deleteOne({"code": id, "serverId": req.serverId});
-        res.status(201).json({deleted: code.deletedCount >= 1});
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-})
-
 module.exports = router
