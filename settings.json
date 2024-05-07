@@ -1,0 +1,6 @@
+{
+    "mongo": "YOUR_MONGO_URL",
+    "secretKey": "YOUR_SECRET_KEY",
+    "botIp": "1.1.1.1",
+    "port": 3000
+}
