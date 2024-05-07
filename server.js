@@ -6,7 +6,6 @@ const port = settings.port;
 
 app.use(express.json());
 app.use(logger)
-app.use(verifyApiSecret)
 app.use(serverIdVerifier)
 
 const codeRouter = require('./routes/code');
@@ -14,15 +13,6 @@ app.use('/v1/code', codeRouter);
 
 function logger(req, res, next) {
     console.log(`[${new Date().toLocaleString()}] Got a request to "${req.originalUrl}" from "${req.connection.remoteAddress.split(`:`).pop()}". ServerID: "${req.get("X-API-Key") || "Not Found!"}"`)
-    next()
-}
-
-function verifyApiSecret(req, res, next) {
-    const secret = req.get("X-API-Secret");
-    if (secret != settings.secretKey) {
-        res.status(401).json({status: false, message: "Provided secret key is not valid!"})
-        return
-    }
     next()
 }
 
