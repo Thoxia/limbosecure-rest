@@ -1,4 +1,4 @@
-exports.codeLengthChecker = function codeLengthChecker(req, res, next) {
+exports.codeLengthChecker = function(req, res, next) {
     var code = req.body.code;
     if (!code) {
         next()

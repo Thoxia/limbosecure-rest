@@ -1,5 +1,5 @@
 
-exports.secretKeyVerifier = function secretKeyVerifier(req, res, next) {
+exports.secretKeyVerifier = function(req, res, next) {
     if (req.originalUrl.startsWith("/api/v1/code")) {
         next()
         return

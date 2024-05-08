@@ -18,7 +18,7 @@ const serverRateLimiters = {
     }),
 };
 
-exports.serverRateLimiter = async function serverRateLimiter(req, res, next) {
+exports.serverRateLimiter = async function(req, res, next) {
     const key = req.serverId;
     const server = await Server.findByPk(key);
     if (!server) {
