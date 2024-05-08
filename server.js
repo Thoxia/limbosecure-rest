@@ -2,12 +2,12 @@ const express = require('express')
 const mongoose  = require('mongoose');
 const app = express()
 const settings = require('./settings.json');
-const {Server} = require('./models/server.model');
-const {serverRateLimiter} = require('./middlewares/ratelimit.middleware');
-const {serverSaver} = require('./middlewares/serversaver.middleware');
-const {secretKeyVerifier} = require('./middlewares/secret.middleware');
-const {codeLengthChecker} = require('./middlewares/length.middleware');
-const {serverIdVerifier} = require('./middlewares/id.middleware');
+const {Server} = require('./models/ServerSchema');
+const {serverRateLimiter} = require('./middlewares/ratelimit');
+const {serverSaver} = require('./middlewares/serversaver');
+const {secretKeyVerifier} = require('./middlewares/secret');
+const {codeLengthChecker} = require('./middlewares/length');
+const {serverIdVerifier} = require('./middlewares/id');
 const port = settings.port;
 
 Server.sync()

@@ -1,4 +1,4 @@
-const {Server} = require('../models/server.model');
+const {Server} = require('../models/ServerSchema');
 const settings = require('../settings.json');
 
 exports.serverSaver = async function serverSaver(req, res, next) {

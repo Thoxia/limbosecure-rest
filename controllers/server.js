@@ -1,4 +1,4 @@
-const {Server} = require('../models/server.model');
+const {Server} = require('../models/ServerSchema');
 const asyncHandler = require("express-async-handler");
 
 exports.create = asyncHandler(async function createServer(req, res) {

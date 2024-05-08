@@ -1,5 +1,5 @@
 const express = require('express');
-const codeController = require('../controllers/code.controller');
+const codeController = require('../controllers/code');
 const router = express.Router()
 
 router.post('/', codeController.create)
