@@ -1,4 +1,4 @@
-exports.serverIdVerifier = function serverIdVerifier(req, res, next) {
+exports.serverIdVerifier = function(req, res, next) {
     if (req.originalUrl.startsWith("/api/v1/server")) {
         next()
         return

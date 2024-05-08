@@ -1,4 +1,4 @@
-const Code = require('../models/code.model');
+const Code = require('../models/CodeSchema');
 const asyncHandler = require("express-async-handler");
 
 exports.create = asyncHandler(async function createCode(req, res) {

@@ -13,3 +13,6 @@ Using this backend, we created our own discord bot. Check our wiki for more info
 This is also implemented to the plugin.
 <br>
 Please note that no support will be provided for this project. (e.g. building, using, implementing)
+<br>
+<br>
+To use this project, copy example.env and rename into .env file and set up it for ur use;

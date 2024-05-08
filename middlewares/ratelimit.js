@@ -1,5 +1,5 @@
 const rateLimit = require("express-rate-limit");
-const {Server} = require('../models/server.model');
+const {Server} = require('../models/ServerSchema');
 
 // non-premium servers can handle ~5 verification per 30 minutes
 // premium servers can handle over 20 verification per 30 minutes
@@ -18,7 +18,7 @@ const serverRateLimiters = {
     }),
 };
 
-exports.serverRateLimiter = async function serverRateLimiter(req, res, next) {
+exports.serverRateLimiter = async function(req, res, next) {
     const key = req.serverId;
     const server = await Server.findByPk(key);
     if (!server) {
