@@ -2,15 +2,6 @@ const express = require('express');
 const Code = require('../models/code.model');
 const router = express.Router()
 
-router.get('/', async (req, res) => {
-    try {
-        const codes = await Code.find({serverId: req.serverId});
-        res.status(200).json(codes);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-})
-
 router.post('/', async (req, res) => {
     try {
         const body = req.body;
