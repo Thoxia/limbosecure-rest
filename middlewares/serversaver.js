@@ -1,9 +1,8 @@
 const {Server} = require('../models/ServerSchema');
-const settings = require('../settings.json');
 
 exports.serverSaver = async function serverSaver(req, res, next) {
     const ip = req.connection.remoteAddress.split(`:`).pop();
-    if (ip == settings.botIp) {
+    if (ip == process.env.BOT_IP) {
         next()
         return
     }
