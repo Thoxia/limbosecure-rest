@@ -12,8 +12,8 @@ const serverRateLimiters = {
     }),
     true: rateLimit({
         windowMs: 60 * 30 * 1000,
-        max: 800,
-        message: {message: "You have exceeded your 800 requests per 30 minutes limit."},
+        max: 1000,
+        message: {message: "You have exceeded your 1000 requests per 30 minutes limit."},
         headers: true,
     }),
 };
