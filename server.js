@@ -39,6 +39,7 @@ mongoose.connect(process.env.MONGO_URI)
         console.log(`Server is running on port ${port}`);
     });
 })
-.catch(() => {
+.catch((err) => {
     console.log("could not connect to mongo!")
+    console.log(err.message)
 })
