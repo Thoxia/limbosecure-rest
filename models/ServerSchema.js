@@ -1,21 +1,27 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { default: mongoose } = require("mongoose");
 
-class Server extends Model {}
-
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './database.sqlite',
-    logging: false
-});
-
-Server.init({
-    id: {
-        type: DataTypes.STRING,
-        primaryKey: true
+const ServerSchema = mongoose.Schema(
+    {
+        serverId: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        ip: {
+            type: String,
+            required: true
+        },
+        premium: {
+            type: Boolean,
+            required: true,
+            default: false
+        }
     },
-    ip: DataTypes.STRING,
-    premium: DataTypes.BOOLEAN
-}, { sequelize, modelName: 'server' });
+    {
+        timestamps: true
+    }
+)
 
-exports.sequelize = sequelize;
-exports.Server = Server;
+const Server = mongoose.model("servers", ServerSchema);
+
+module.exports = Server;

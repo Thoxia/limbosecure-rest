@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express')
 const mongoose  = require('mongoose');
 const app = express()
-const {Server} = require('./models/ServerSchema');
 const {serverRateLimiter} = require('./middlewares/ratelimit');
 const {serverSaver} = require('./middlewares/serversaver');
 const {secretKeyVerifier} = require('./middlewares/secret');
@@ -10,7 +9,7 @@ const {codeLengthChecker} = require('./middlewares/length');
 const {serverIdVerifier} = require('./middlewares/id');
 const port = process.env.PORT || 3000;
 
-Server.sync()
+app.set('trust proxy', 1)
 
 app.use(express.json())
 app.use(logger)
@@ -27,7 +26,8 @@ const serverRouter = require('./routes/server');
 app.use('/api/v1/server', serverRouter);
 
 function logger(req, res, next) {
-    const ip = req.connection.remoteAddress.split(`:`).pop();
+    const ip = req.headers['x-forwarded-for'].split(",").pop() || req.connection.remoteAddress.split(`:`).pop();
+    req.ip = ip;
     console.log(`[${new Date().toLocaleString()}] Got a request to "${req.originalUrl}" from "${ip}". ServerID: "${req.get("X-API-Key") || "Not Found!"}"`)
     next()
 }

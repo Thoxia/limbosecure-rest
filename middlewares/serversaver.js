@@ -1,7 +1,7 @@
-const {Server} = require('../models/ServerSchema');
+const Server = require('../models/ServerSchema');
 
 exports.serverSaver = async function(req, res, next) {
-    const ip = req.connection.remoteAddress.split(`:`).pop();
+    const ip = req.ip;
     if (ip == process.env.BOT_IP) {
         next()
         return
@@ -13,14 +13,10 @@ exports.serverSaver = async function(req, res, next) {
         return
     }
 
-    const server = await Server.findByPk(id);
-    if (!server) {
-        await Server.create({
-            id: id,
-            ip: req.ip,
-            premium: false
-        });
-    }
+    await Server.findOneAndUpdate({serverId: id}, {ip: ip}, {
+        new: true,
+        upsert: true
+    });
 
     next()
 }
