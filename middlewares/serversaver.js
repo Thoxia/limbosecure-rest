@@ -8,7 +8,8 @@ exports.serverSaver = async function(req, res, next) {
     }
 
     const id = req.serverId;
-    if (!id) {
+    // js is weird...
+    if (!id || id === undefined || id == null) {
         next()
         return
     }

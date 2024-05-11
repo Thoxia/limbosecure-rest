@@ -5,7 +5,7 @@ exports.serverIdVerifier = function(req, res, next) {
     }
 
     const serverId = req.get("X-API-Key");
-    if (serverId == null || serverId.length <= 10) {
+    if (serverId === null || serverId === undefined || serverId.length <= 10) {
         res.status(401).json({status: false, message: "You must provide a server id!"})
         return
     }
