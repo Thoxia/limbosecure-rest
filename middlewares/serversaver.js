@@ -14,10 +14,12 @@ exports.serverSaver = async function(req, res, next) {
         return
     }
 
-    await Server.findOneAndUpdate({serverId: id}, {ip: ip}, {
-        new: true,
-        upsert: true
-    });
+    const server = await Server.findOne({serverId: id});
+    if (!server) {
+        await Server.create({serverId: id, ip: ip});
+    } else {
+        await Server.updateOne({serverId: id}, {ip: ip});
+    }
 
     next()
 }

@@ -26,7 +26,7 @@ const serverRouter = require('./routes/server');
 app.use('/api/v1/server', serverRouter);
 
 function logger(req, res, next) {
-    const ip = req.headers['x-forwarded-for'].split(",").pop() || req.connection.remoteAddress.split(`:`).pop();
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress.split(`:`).pop();
     req.ip = ip;
     console.log(`[${new Date().toLocaleString()}] Got a request to "${req.originalUrl}" from "${ip}". ServerID: "${req.get("X-API-Key") || "Not Found!"}"`)
     next()
